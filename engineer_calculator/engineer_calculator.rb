@@ -35,14 +35,14 @@ module Engineer
           units << x[1]
         end
         @opt = nil
-        return @result = { value: eval(value).to_f, unit: units.flatten.join, convert_formula: formula.join } unless @error[:unit_not_found].nil?
         converted_formula = formula.inject(String.new){ |f, v| f << v[0].to_s + (v[0] != v[1].join ? v[1].join : " ") }
+        return @result = { value: eval(value).to_f, unit: units.flatten.join, convert_formula: converted_formula } unless @error[:unit_not_found].nil?
         @result = { value: sprintf("%.05g", eval(value).to_f), unit: calc_unit(units.flatten), convert_formula: converted_formula }
         @alter = search_unit(@result)
         @result
       rescue StandardError, SyntaxError
-        @error[:inapprehensible] = "Sorry, we could not calculate"
-        nil
+         @error[:inapprehensible] = "Sorry, we could not calculate"
+         nil
       end
     end
 
@@ -274,11 +274,33 @@ module Engineer
       end
     end
 
+    def split_test(formula)
+      unit_array = []
+      formula_pre = formula.to_s.delete(" ")
+      formula_pre.scan(/(#{reg(:tri)})|(?:(#{reg(:num)}(?:#{reg(:double)})*)((?:\/?\(?\/?[a-z]+\d*(?:\*[a-z])*(?:\W*[a-z]\d*\)*)*)(?:-*\d[^[a-z]])*\)?))|(#{reg(:ari)})|((?:#{reg(:num)})*(?:#{reg(:double)})?)/i).each do |data|
+        unit_array << { value: (data[0] || data[1] || data[3] || data[4]), unit: (data[2] || data[3]) }
+      end
+      unit_array.each_with_index do |data, index|
+        if data[:unit] =~ /^[^\(].+\)$/
+          data[:unit].gsub!(/.$/,'')
+          unit_array.insert(index+1, { value: ")", unit: ")" })
+        end
+      end
+      unit_array
+    end
+
     def split_unit(formula)
       unit_array = []
       formula_pre = formula.to_s.delete(" ")
-      formula_pre.scan(/(#{reg(:tri)})|(?:(#{reg(:num)}(?:#{reg(:double)})*)((?:\/?\(?\/?[a-z]+(?:\*[a-z])*(?:\W*[a-z]\d*\)*)*)-*\d*\)?))|(#{reg(:ari)})|((?:#{reg(:num)})*(?:#{reg(:double)})?)/i).each do |data|
+      formula_pre.scan(/(#{reg(:tri)})|(?:(#{reg(:num)}(?:#{reg(:double)})*)((?:\/?\(?\/?[a-z]+\d*(?:\*[a-z])*(?:\W*[a-z]\d*\)*)*)(?:-*\d[^[a-z]])*\)?))|(#{reg(:ari)})|((?:#{reg(:num)})*(?:#{reg(:double)})?)/i).each do |data|
         unit_array << { value: (data[0] || data[1] || data[3] || data[4]), unit: (data[2] || data[3]) }
+      end
+      unit_array.each_with_index do |data, index|
+        if data[:unit] =~ /^[^\(]+\)$/
+          data[:unit].gsub!(/.$/,'')
+          unit_array.insert(index+1, { value: ")", unit: ")" })
+          p 'suc'
+        end
       end
       unit_array
     end

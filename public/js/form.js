@@ -18,6 +18,7 @@ $('form').submit(function(event) {
       dataType: "json",
       $('#new').empty();
       $('#new').append(result);
+      $("html,body").animate({scrollTop:$('#top').offset().top-100});
     },
     error: function(xhr, textStatus, error) {
       alert('NG...');

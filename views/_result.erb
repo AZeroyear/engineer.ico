@@ -1,4 +1,4 @@
-<%= "<h2 class='heading'>#{ @result[:convert_formula].to_s + " = " + @result[:value].to_s + " " + @result[:unit].to_s}</h2>" if @result %>
+<%= "<h2 class='heading' id='reslut'>#{ @result[:convert_formula].to_s + " = " + @result[:value].to_s + " " + @result[:unit].to_s}</h2>" if @result %>
 <% unless @error.empty? %>
   <% @error.each do |err, message| %>
     <center><h5 style="color:red"><%= "#{err.capitalize} : #{message}" %></h5></center>
