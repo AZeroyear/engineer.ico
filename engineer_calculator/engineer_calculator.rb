@@ -36,7 +36,7 @@ module Engineer
         end
         @opt = nil
         return @result = { value: eval(value).to_f, unit: units.flatten.join, convert_formula: formula.join } unless @error[:unit_not_found].nil?
-        converted_formula = formula.inject(String.new){ |f, v| f << v[0].to_s + (v[0] != v[1].join ? v[1].join : "") }
+        converted_formula = formula.inject(String.new){ |f, v| f << v[0].to_s + (v[0] != v[1].join ? v[1].join : " ") }
         @result = { value: sprintf("%.05g", eval(value).to_f), unit: calc_unit(units.flatten), convert_formula: converted_formula }
         @alter = search_unit(@result)
         @result
@@ -133,7 +133,7 @@ module Engineer
       si_base_unit.merge(si_derived_unit).delete_if { |type, e_unit|
         compare_unit != multi_div_unit(split_si_unit(e_unit)[1]).sort
       }.each do |unit_name, e_unit|
-        all_unit[:si_unit] << [unit_name, si_alter_unit[unit_name] ? si_alter_unit[unit_name].join(" : ") : si_base_unit[unit_name] || si_derived_unit[unit_name] ]
+        all_unit[:si_unit] << [unit_name, si_alter_unit[unit_name] ? si_alter_unit[unit_name].join(" : ") : nil ]
         all_unit[:variable] << [unit_name, variable_unit[unit_name] ? variable_unit[unit_name].map { |v_unit, v_value| [v_unit, value.to_f * v_value.to_f] } : nil]
       end
       all_unit

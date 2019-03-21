@@ -1,0 +1,52 @@
+<%= "<h2 class='heading'>#{ @result[:convert_formula].to_s + " = " + @result[:value].to_s + " " + @result[:unit].to_s}</h2>" if @result %>
+<% unless @error.empty? %>
+  <% @error.each do |err, message| %>
+    <center><h5 style="color:red"><%= "#{err.capitalize} : #{message}" %></h5></center>
+  <% end %>
+<% end %>
+
+<% if @alter %>
+<section class='unit'>
+  <h2><span>Result of Convert Unit</span></h2>
+  <p>単位換算結果</p>
+  <% if @alter[:si_unit] %>
+    <div class="container">
+    <h3><i class="fas fa-balance-scale"></i>  SI UNIT</h3>
+    <div class='alter'><table>
+    <th>Result Value</th><th>Prefix</th>
+    <% @alter[:si_unit].each do |unit_type, unit_name| %>
+      <th><span><%= unit_type %></span></th>
+    <% end %>
+    <tr>
+    <td id="result"><%= "#{@result[:value].to_s}" %></td>
+    <td class='prefix'><select>
+      <option></option>
+      <% @eng_calc.metric_prefix_unit.each do |prefix_name, val| %>
+        <option <%= "selected" if prefix_name=='da'%> data-value=<%= (@result[:value].to_f / val.to_f).to_f if @result %> >
+          <%= prefix_name if prefix_name!='da' %></option>
+      <% end %>
+    </select></td>
+    <% @alter[:si_unit].each do |unit_type, unit_name| %>
+      <td><%= @result[:unit].to_s %><%= "<br>#{unit_name.gsub(":", "<br>") if unit_name}" %></td>
+    <% end %>
+    </tr>
+  </table></div>
+    <% end %>
+
+      <% if @alter[:variable] %>
+      <h3><i class="fas fa-fill-drip"></i>  VARIABLE UNIT</h3>
+      <% @alter[:variable].each do |unit_type, unit_name| %>
+      <% if unit_name %>
+      <h4><span><%= unit_type %></span></h4>
+      <table>
+        <% unit_name.each do |unit, value| %>
+        <tr><td><%= sprintf("%.12f", value) %></td>
+          <td><%= unit %></td></tr>
+        <% end %>
+        <% end %>
+      </table>
+      <% end %>
+      </div>
+      <% end %>
+</section>
+<% end %>

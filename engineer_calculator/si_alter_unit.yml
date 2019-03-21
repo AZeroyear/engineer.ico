@@ -35,7 +35,6 @@ Energy Density:
   - J/m3
   - joule per cubic metre
 Surface Tension, Stiffness:
-  - N/m
   - J/m2
   - newton per metre
 Heat Flux Density, Irradiance:
@@ -89,22 +88,10 @@ Radiant Intensity:
 Spectral Intensity:
   - W/(sr*m)
   - watt per steradian metre
-Speed, Velocity:
-  - m/s
-Acceleration:
-  - m/s2
-Jerk, Jolt:
-  - m/s3
-Snap, Jounce:
-  - m/s4
 Angular Velocity:
   - rad/s
 Angular Acceleration:
   - rad/s2
-Frequency Drift:
-  - /s2
-Volumetric Flow:
-  - m3/s
 Frequency:
   - Hz
   - hertz

@@ -6,21 +6,20 @@
 		<meta name="description" content="Engineer.ico is web page for all of Engineer">
 		<title>ENGINEER.ico</title>
 		<link rel="icon" href="/favicon.ico">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
-		<link rel="stylesheet" href="/css/milligram.min.css">
 		<link rel="stylesheet" href="/css/layout.css">
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	</head>
 	<body>
-
 		<main class="wrapper">
-			<nav class="navigation">
-				<section class="container">
+			<nav class="navigation conatainer">
 					<a class="navigation-title" href="/">
 					<img src="photo/icon.png"></img><title class="title">ENGINEER.ico</title></a>
 					<ul class="navigation-list float-right">
 						<li class="navigation-item">
-							<a class="navigation-link" href="#popover-grid" data-popover><img src="photo/engineer.svg" width="32" height="32" class="float-right engineer"></a>
+							<a class="navigation-link" href="#popover-grid" data-popover><i class="fas fa-hard-hat"></i></a>
 							<div class="popover" id="popover-grid">
 								<ul class="popover-list">
 									<li class="popover-item"><a class="popover-link" href="/calculator" title="Engineer Calculator">Engineer Calculator</a></li>
@@ -30,18 +29,16 @@
 							</div>
 						</li>
 					</ul>
-				</section>
 			</nav>
-		</main>
-		<section class="navspace"></section>
-		<%= yield %>
+			<div class="navspace"></div>
 
+		<%= yield %>
+		</main>
 		<section class="container"><center>
 			<iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?o=9&p=20&l=ez&f=ifr&linkID=33c6b9ac04f97478abdb7dc476ae83c0&t=eas01-22&tracking_id=eas01-22" width="120" height="90" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
 		</center></section>
 		<footer><a href="https://eastazy.work", style="color:#ffffff">Azy - Achieve Zero year - all right reserved<a></footer>
-		<a href="https://milligram.io/">CSS Framework was used miligram</a>
-		<div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/"title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 		<script src="https://milligram.github.io/scripts/main.js"></script>
+		<script async type="text/javascript" src="/js/form.js"></script>
 	</body>
 </html>

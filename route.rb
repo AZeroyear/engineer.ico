@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'json'
 require 'sinatra/reloader'
 require_relative 'engineer_calculator/engineer_calculator.rb'
 
@@ -13,27 +14,29 @@ get '/' do
   erb :index
 end
 
+get '/unit_test' do
+  @result = @eng_calc.calc("100kg")
+  @alter = @eng_calc.alter
+  @error = @eng_calc.error
+  erb :_result, :layout => false
+end
+
 get '/calculator' do
   @title = "ENGINEER.ico / Calculator"
   erb :calculator
 end
 
 post '/calculator' do
-  @title = "Engineer.Calculator"
   @result = @eng_calc.calc(params["calc"])
   @alter = @eng_calc.alter
   @error = @eng_calc.error
   erb :calculator
 end
 
-get '/test' do
-  erb :miliglamtest
-end
-
-get '/miltest' do
-  erb :index_test
-end
-
-get '/index_test' do
-  erb "index_test.html"
+post '/js_post' do
+  q = Hash[params]
+  @result = @eng_calc.calc(q["calc"])
+  @alter = @eng_calc.alter
+  @error = @eng_calc.error
+  erb :_result, :layout => false
 end

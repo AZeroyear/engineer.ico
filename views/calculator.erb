@@ -1,63 +1,21 @@
-<center><img src="photo/calculator.svg">
-  <h2>Engineer Calculator</h2>
-  <h5>技術者計算機</h5></center>
-<section class="container sticky">
-  <form method="POST"><section class="row">
-    <input type="text" class="column-60" name="calc" style="text-align:center" value= <%= params["calc"] %>>
-    <button class="button column-20" type="submit">CALCULATE</button>
-  </section></form>
-  <%= "<h3>#{ @result[:convert_formula].to_s + " = " + @result[:value].to_s + " " + @result[:unit].to_s}</h3>" if @result %>
-<% unless @error.empty? %>
-  <% @error.each do |err, message| %>
-    <center><h5 style="color:red"><%= "#{err.capitalize} : #{message}" %></h5></center>
-    <% end %>
-<% end %>
+<section class="calculator">
+  <h1 class="title">Engineer Calculator</h1>
+  <h5 class="title">技術者計算機</h5>
+  <i class="fas fa-calculator fa-3x"></i>
 </section>
-<% if @alter %>
-<center>
-  <h3 style="font-weight: bold;">Result of Convert Unit</h3>
-  <p>単位換算結果</p>
-  <% if @alter[:si_unit] %>
-  <div class="container">
-  <h4> (SI Unit) </h4>
-  <% @alter[:si_unit].each do |unit_type, unit_name| %>
-  <h4><%= unit_type %></h4>
-  <table>
-    <tr><td><h4><%= @result[:value].to_s if @result %></h4></td>
-      <td><h4><%= unit_name %></h4></td></tr>
-      <% @eng_calc.metric_prefix_unit.each do |prefix_name, val| %>
-      <tr><td><%= sprintf("%.05g", @result[:value].to_f / val.to_f ) if @result %></td>
-        <td><%= prefix_name + "  (" + unit_name + ")" %></td></tr>
-        <% end %>
-      </table>
-      <% end %>
-      <% end %>
-      <% if @alter[:variable] %>
-      <h4> (Variable Unit) </h4>
-      <p>その他のUNIT</p>
-      <% @alter[:variable].each do |unit_type, unit_name| %>
-      <h4><%= unit_type %></h4>
-      <table>
-        <% if unit_name %>
-        <% unit_name.each do |unit, value| %>
-        <tr><td><%= sprintf("%.05g", value) %></td>
-          <td><%= unit %></td></tr>
-        <% end %>
-        <% end %>
-      </table>
-      <% end %>
-      </div>
-      <% end %>
-    </center>
-    <% end %>
-  </div>
+<section class="sticky">
+  <form method="POST" action='/js_post'>
+    <input type="text" name="calc" placeholder="Try!! 20cm*50^2s2" value= <%= params["calc"] %>>
+    <button class="button" type="submit">= CALCULATE</button>
+  </form>
+</section>
+  <div id='new'></div>
 
-
-  <center class="container">
-    <h3 style="font-weight: bold;">Available unit</h3>
+<section class='unit si'>
+    <h2><span>Available unit</span></h2>
     <p>使用可能な単位<p>
-    <h4>(SI Unit)</h4>
-    <table class="unit">
+    <h3><i class="fas fa-balance-scale"></i> SI UNIT</h3>
+    <table class='si'>
     <% @eng_calc.si_base_unit.each do |name, unit| %>
       <tr>
         <td><a href= <%= "#" + "#{name}" %> ><%= name %></a></td>
@@ -71,18 +29,19 @@
       </tr>
     <% end %>
   </table>
-  </center>
-  <center class="container" style="padding-top:20pt">
-    <% @eng_calc.variable_unit.each do |unit_name, unit_value| %>
-    <table>
-      <%= "<h4 id=#{unit_name}>" %><%= unit_name %></h4>
-      <% unit_value.each do |unit, value| %>
+</section>
+<section class='unit' style="padding-top:20pt">
+  <h3><i class="fas fa-fill-drip"></i>  VARIABLE UNIT</h3>
+  <% @eng_calc.variable_unit.each do |unit_name, unit_value| %>
+  <table>
+    <%= "<h4 id=#{unit_name} class='anchor'><span>#{unit_name}</span></h4>" %>
+    <% unit_value.each do |unit, value| %>
+    <tr>
+      <td><%= unit %></td>
+      <td><%= value %></td>
       <tr>
-        <td><%= unit %></td>
-        <td><%= value %></td>
-      <tr>
-      <% end %>
-    </table>
     <% end %>
-  </center>
-  <p style="padding-top:20pt;text-align:center"> Si unit Defintion refer to <a href="https://en.wikipedia.org/wiki/International_System_of_Units">wikipedia</a></p>
+  </table>
+  <% end %>
+</section>
+<p style="padding-top:20pt;text-align:center"> Si unit Defintion refer to <a href="https://en.wikipedia.org/wiki/International_System_of_Units">wikipedia</a></p>
