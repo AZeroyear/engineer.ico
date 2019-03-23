@@ -1,7 +1,12 @@
 require 'sinatra'
 require 'json'
 require 'sinatra/reloader'
-require_relative 'engineer_calculator/engineer_calculator.rb'
+
+if Dir.exist?('../engineer_calculator')
+  require_relative '../engineer_calculator/lib/engineer_calculator.rb'
+else
+  require 'engineer_calculator'
+end
 
 before do
   @eng_calc = Engineer::Calculator.new

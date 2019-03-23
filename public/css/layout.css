@@ -150,13 +150,17 @@ footer {
 }
 .sticky .button{
   display: block;
+  margin-top:0.2rem;
   margin-left: auto;
   margin-right: auto;
   background-color: #4169e1;
   color: #fff;
   border-radius: 1rem;
   padding:0.8rem;
-  font-size:1.2rem;
+  font-size:1.5rem;
+  border: none;
+  width: 500px;
+  font-weight: bold;
 }
 .sticky .button:hover{
   opacity: 0.6;
@@ -167,6 +171,8 @@ input[type="text"]{
   width: 100%;
   max-width:112.0rem;
   text-align: center;
+  border-radius: 1.5px;
+  border: 1px solid #ccc;
 }
 input:placeholder-shown, input::-webkit-input-placeholder{
   opacity: 0.6;
@@ -252,6 +258,15 @@ table td{
   }
   .category{
     width:100%;
+  }
+  .sticky .button{
+    width: 100%;
+  }
+}
+@media screen and (max-width: 480px){
+  .sticky{
+    position: sticky;
+    top:0;
   }
 }
 /*miligram*/
