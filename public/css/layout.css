@@ -62,7 +62,7 @@ footer {
   max-width:100%;
   position:fixed;
   width:100%;
-  z-index:99;
+  z-index:10;
 }
 .navigation .container {
   padding-bottom:0;
@@ -267,6 +267,7 @@ table td{
   .sticky{
     position: sticky;
     top:0;
+    z-index:99;
   }
 }
 /*miligram*/
