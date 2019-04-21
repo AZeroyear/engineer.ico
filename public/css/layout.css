@@ -132,6 +132,10 @@ footer {
   color:#606c76;
   padding-left: 2rem;
 }
+.notyet {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 
 /*engineer_calculator*/
 .calculator h1, .calculator h5{
