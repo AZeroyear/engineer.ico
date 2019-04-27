@@ -1,5 +1,6 @@
 source "http://rubygems.org"
 gem 'sinatra'
 gem 'sinatra-contrib'
-gem 'milligram'
 gem 'engineer_calculator'
+gem 'sinatra-subdomain'
+gem 'rack-subdomain'

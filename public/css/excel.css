@@ -1,0 +1,9 @@
+.navigation {
+  background: #006400;
+}
+footer {
+  background: #006400;
+}
+a:link, a:visited, a:hover, a:active {
+  color:#006400;
+}
