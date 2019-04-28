@@ -1,29 +1,29 @@
 <section class="container">
   <h1>All for EXCEL, EXCEL for All</h1>
   <h3>全てはエクセルのために、エクセルはみんなのために</h3>
+    <img src='photo/excel/Excellogo.png'>
+    <p>このサイトはエクセル大好きで</p>
+    <p>ノンプログラマー出身の管理主が</p>
+    <p>"エクセル中級者"</p>
+    <p>に向けて業務で使えるVBAコードを公開しているサイトです。</p>
+</section>
+<div class="navspace"></div>
 
-    <p>このサイトは機械系技術者であり</p>
-    <p>プログラマーである管理主が</p>
-    <p>"エンジニアにちょっと役立つ"</p>
-    <p>を目指してプログラミングしているサイトです</p>
+<h2>1. 始めようクラスモジュール</h2>
+<section class='container'>
+  <%= erb(:'excel/_category', :locals => { :p_class => @excel_class }) %>
 </section>
-<section class="container">
-  <div class="category">
-    <a href="/calculator">
-      <h3>Engineer Calculator</h3><h5>技術者計算機</h5>
-      <i class="fas fa-calculator fa-5x"></i>
-      <p>単位換算しながら計算するの面倒なので、
-      単位を入力したまま計算できる計算機を作りました</p>
-    </a>
-  </div>
+
+<div class="navspace"></div>
+
+<h2>2. 自作クラスモジュールの応用編</h2>
+<section class='container'>
+  <%= erb(:'excel/_category', :locals => { :p_class => @act_class }) %>
 </section>
-<section class="container">
-  <div class="category notyet">
-    <a href="#">
-      <h3>Strength Calculator</h3><h5>強度計算機</h5>
-      <i class="fas fa-expand-arrows-alt fa-5x"></i>
-      <p>Comming Soon</p>
-      <p>自動で強度計算をします</p>
-    </a>
-  </div>
+
+<div class="navspace"></div>
+
+<h2>3. VBAコード集</h2>
+<section class='container'>
+  <%= erb(:'excel/_category', :locals => { :p_class => @vba_class }) %>
 </section>

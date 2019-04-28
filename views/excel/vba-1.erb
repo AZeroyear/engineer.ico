@@ -1,0 +1,28 @@
+<section class='vbacontent'>
+  <i class="fas fa-3x fa-sort-alpha-up"></i>
+  <h1>列の英語表記を数字に変換する関数</h1>
+  <p>cells(1,c("AB"))のように列を数字変換できます。</p>
+  <pre>
+エクセルでVBAで書いている以上、cells(1, 134)で指定して値の取得や、
+上書きをする操作は必ずあると思います。
+しかし、その度に列番号を数えて、cellsの中に入れるのはあまりに大変です。
+そこで、アルファベットを引数で渡すと数字を返すFunctionを定義してみます。
+
+<pre class='prettyprint'>
+Function c(alhphabet_column As String)
+    c = 0
+    For i = 1 To Len(alhphabet_column)
+        c = c * 26 + (Asc(UCase(Mid(alhphabet_column, i, 1))) - 64)
+    Next
+End Function
+
+'c functionを使ってセルの値を操作できます。
+name = cells(1,c("A"))
+msgbox name
+</pre>
+
+このコードをmoduleに記載すると、A1セルの値がメッセージボックスで表示されます。
+A-Zまではなんとかなるかもしれませんが、それ以上の列数になると大変なので、
+ぜひ使ってみてください。
+  </pre>
+</section>

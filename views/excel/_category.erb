@@ -1,0 +1,9 @@
+<% p_class.each do |article| %>
+<div class="category">
+  <a href=<%= article[:url] %> >
+    <%= article[:icon] %>
+    <h3><%= article[:title] %></h3>
+    <%= article[:contents] %>
+  </a>
+</div>
+<% end %>
