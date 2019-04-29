@@ -1,0 +1,16 @@
+<% if @back_next %>
+<section class='vbacontent clearfix'>
+  <% if @back_next[0] %>
+  <a href=<%= @back_next[0] %>>
+    <i class="fas fa-2x fa-caret-left float-left"></i>
+    <span class='float-left'>BACK</span>
+  </a>
+  <% end %>
+  <% if @back_next[1] %>
+  <a href=<%= @back_next[1] %>>
+    <i class="fas fa-2x fa-caret-right float-right"></i>
+    <span class='float-right'>NEXT </span>
+  </a>
+  <% end %>
+</section>
+<% end %>

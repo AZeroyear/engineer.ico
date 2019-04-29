@@ -119,3 +119,24 @@ table td{
 .heading::before {
   bottom: 5px;
 }
+.about{
+  margin-top: 5rem;
+  background: #191970;
+}
+/*for mobile*/
+@media screen and (max-width: 640px) {
+  .si{
+    table-layout: fixed;
+    width: 100%;
+  }
+  .sticky .button{
+    width: 100%;
+  }
+}
+@media screen and (max-width: 480px){
+  .sticky{
+    position: sticky;
+    top:0;
+    z-index:99;
+  }
+}

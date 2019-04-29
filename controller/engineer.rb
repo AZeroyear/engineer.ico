@@ -27,3 +27,7 @@ end
 post '/js_post' do
   erb :'engineer/_result', :layout => false
 end
+
+get '/about' do
+  erb :'about', :layout => :'engineer/layout'
+end
