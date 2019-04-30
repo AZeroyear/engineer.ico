@@ -1,0 +1,17 @@
+<section class='vbacontent'>
+  <i class="fas fa-3x fa-file-code"></i>
+  <h1>1. なぜクラスモジュールで作るのか?</h1>
+  <p>エクセルでクラスモジュールを使う理由を解説します。</p>
+  <pre>
+
+<div class='dark'><code>'標準モジュール / Module1
+Sub test()
+  Dim Sh As New SHE
+  Call Sh.set_sheet("sheet1", 2, 1)
+  Call Sh.cell_w(Sh.r_start + 1, "test1", "test-test-1")
+
+  Debug.Print Sh.cell_r(Sh.r_start + 1, "test1")
+  End Sub
+</code></div>
+  </pre>
+</section>

@@ -8,8 +8,7 @@
 しかし、その度に列番号を数えて、cellsの中に入れるのはあまりに大変です。
 そこで、アルファベットを引数で渡すと数字を返すFunctionを定義してみます。
 
-<pre class='prettyprint'>
-Function c(alhphabet_column As String)
+<div class='dark'><code>Function c(alhphabet_column As String)
     c = 0
     For i = 1 To Len(alhphabet_column)
         c = c * 26 + (Asc(UCase(Mid(alhphabet_column, i, 1))) - 64)
@@ -19,7 +18,7 @@ End Function
 #c functionを使ってセルの値を操作できます。
 name = cells(1,c("A"))
 msgbox name
-</pre>
+</code></div>
 
 このコードをmoduleに記載すると、A1セルの値がメッセージボックスで表示されます。
 A-Zまではなんとかなるかもしれませんが、それ以上の列数になると大変なので、

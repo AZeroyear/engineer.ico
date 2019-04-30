@@ -25,6 +25,9 @@ a:link, a:visited, a:hover, a:active {
   font-size: 1.8rem;
   margin:0.5rem 0;
 }
+.vbacontent pre img{
+  max-width: 100%;
+}
 .container {
    max-width: 650px;
 }
@@ -37,4 +40,19 @@ a:link, a:visited, a:hover, a:active {
 .about{
   margin-top: 5rem;
   background: #006400;
+}
+.dark{
+  background: #000;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow: scroll;
+}
+code{
+  font-size: 1.4rem;
+  line-height: 2.2rem;
+  font-family: Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+  overflow: scroll;
+  white-space: pre;
+  resize: horizontal;
+  color: white;
 }

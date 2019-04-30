@@ -1,0 +1,79 @@
+<% require "././controller/excel_helper" %>
+<section class='vbacontent clearfix'>
+<i class="fas fa-3x fa-laptop-code"></i>
+<h1>3. クラスモジュールの作り方/使い方</h1>
+<p>まずはクラスモジュールの作り方/使い方を解説します。</p>
+
+<pre>
+<strong>0) 動画で学ぶ</strong>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/D2KqLRHfVfQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<strong>1) 作り方</strong>
+左上のVBAProjectのプロジェクトウィンドウで、
+右クリック => (挿入) => (クラスモジュール)
+
+<img src='photo/excel/1-Class_4.jpg'>
+
+とします。
+
+左下のプロパティで名前を変更します。
+デフォルトで "Class1" となっているはずなので、
+名称を "Sample" に変更してみましょう。
+
+<img src='photo/excel/1-Class_5.jpg'>
+
+<strong>2) クラスの内容を定義する</strong>
+クラスを使うためには、クラスの内容を定義する必要があります。
+メソッドの定義の仕方は、普通のModuleと変わりませんが、
+Classでのスコープを再確認しましょう。
+
+Private => クラスモジュールの中だけで使用することができます。
+Public  => 作成したインスタンスからアクセスすることができます。
+
+今はあまり意味がわからないかもしれませんが、
+感覚的にクラスモジュールの外側でも使いたい変数や、関数は Public で定義すると覚えておけばいいと思います。
+
+Sampleとして以下のコードを定義してみます。
+<div class='dark'><code>'クラスモジュール / Sample
+'クラスモジュールの外側からアクセスする為にPublicで変数を定義
+Public test_case As String
+
+'Class_Initializeを定義すると、そのクラスのインスタンスが作成された時に、処理を開始する。
+'クラスモジュールの外側からアクセする必要がない為Privateで変数を定義
+Private Sub Class_Initialize()
+  test_case = "first"
+End Sub
+</code></div>
+
+<strong>3) クラスを使う</strong>
+それでは実際にSampleクラスを使ってみましょう。
+以下のコードを標準モジュールに入力します。
+<div class='dark'><code>'標準モジュール / Module1
+Sub test_case_test()
+  Dim TC As New Sample
+  'この時点でClass_Initializeが実行されます。
+
+  MsgBox TC.test_case
+  'TCオブジェクトのtest_case変数の内容を
+  'メッセージボックスに表示する。
+  '"First"が表示されるはずです。
+
+  TC.test_case = "second"
+  'TCオブジェクトのtest_case変数を書き換えます。
+
+  MsgBox TC.test_case
+  '"second"が表示されるはずです。
+End Sub
+</code></div>
+
+どうだったでしょうか。
+TCはSampleをクラスとするインスタンスとして作成された為、
+Sampleクラスでもつ変数が受け継がれ、
+値の更新をすることができました。
+
+次回クラスを使って、シートを操作していきます。
+
+<strong>4) 参考リンク</strong>
+<a href='https://qiita.com/Kamo123/items/a4c7749fa30d8f68df28'>VBAでクラスをつくる</a>
+</pre>
+</section>

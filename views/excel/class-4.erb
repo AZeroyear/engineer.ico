@@ -1,0 +1,50 @@
+<% require "././controller/excel_helper" %>
+<section class='vbacontent clearfix'>
+<i class="fas fa-3x fa-bolt"></i>
+<h1>4. シートのテーブルを自在に操作するSHEクラス</h1>
+<p>シートを操作するためのクラス SHE クラスを解説します。</p>
+
+<pre>
+<strong>0) 動画で学ぶ</strong>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/D2KqLRHfVfQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<strong>1) 作り方</strong>
+<a href='/class-3'>前回の記事</a>を参考にしながら、"SHE" Class を作成しましょう。
+その後、以下のコードをコピペします。
+
+<%= erb(:'excel/_she_class') %>
+
+今の所は細かいところは気にせずに、
+workbookとworksheetを取り扱うことができるクラスを作ったと理解すればOKです。
+
+<strong>2) 使い方</strong>
+テスト用のテーブルとして次のテーブルをシート内に作成してください。
+<img src='photo/excel/1-Class_6.jpg'>
+
+青い色のセルを見出しとしています。
+行と列も間違えないように作成してください。
+
+次のコードを標準モジュールにコピペします。
+<div class='dark'><code>'標準モジュール / Module1
+Sub test()
+  Dim Sh As New SHE
+
+  'Sh のシート情報をセットする。引数は (シート名、 見出しの行番号、見出しの列番号)です。
+  Call Sh.set_sheet("sheet1", 2, 1)
+
+  'cellに値を記載します。
+  Call Sh.cell_w(Sh.r_start + 1, "test1", "test-test-1")
+
+  'cellに記載した値をプリントします。
+  Debug.Print Sh.cell_r(Sh.r_start + 1, "test1")
+End Sub
+</code></div>
+
+動画でどのように動くか確認してみてください。
+
+また、シート間のコピーや指定したセルへの色づけなど、
+多種多様なメソッドをこのクラスに定義することができます。
+順次VBAのアップデートをしていきます。
+
+</pre>
+</section>
