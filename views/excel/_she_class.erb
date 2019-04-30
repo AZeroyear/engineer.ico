@@ -1,77 +1,81 @@
 <div class='dark'><code># SHE class version 0.0.1
+  Public wb As Workbook
+  Public ws As Worksheet
+  Public c_start As Integer
+  Public c_end As Integer
+  Public r_start As Integer
+  Public r_end As Integer
+  Public c As Object
 
-Public wb As Workbook
-Public ws As Worksheet
-Public c_beg As Integer
-Public c_end As Integer
-Public r_beg As Integer
-Public r_end As Integer
-Public c As Object
+  Sub set_sheet(sheet_name As String, _
+              Optional r_start_number As Integer = 2, _
+              Optional c_start_number As Integer = 1, _
+              Optional book As Workbook)
+      If book Is Nothing Then: Set book = ThisWorkbook
 
-Sub set_sheet(sheet_name As String, Optional c_beg As Integer = 1, Optional r_beg As Integer = 2, _
-                Optional book As Workbook)
-    If book Is Nothing Then: Set book = ThisWorkbook
+      Set wb = book
+      Set ws = wb.Worksheets(sheet_name)
 
-    Set wb = book
-    Set ws = wb.Worksheets(sheet_name)
+      r_start = r_start_number
+      c_start = c_start_number
 
-    Call refresh
+      Call refresh
 
-    Set c = CreateObject("Scripting.Dictionary")
-    For c_count = c_beg To c_end
-        If ws.Cells(r_beg, c_count).value <> Empty Then: c(ws.Cells(r_beg, c_count).value) = c_count
-    Next c_count
+      Set c = CreateObject("Scripting.Dictionary")
+      For c_count = c_start To c_end
+          If ws.Cells(r_start, c_count).value <> Empty Then: c(ws.Cells(r_start, c_count).value) = c_count
+      Next c_count
 
-End Sub
+  End Sub
 
-Sub refresh()
-    With ws.UsedRange
-        c_end = .Find("*", , xlFormulas, , xlByColumns, xlPrevious).Column
-        r_end = .Find("*", , xlFormulas, , xlByRows, xlPrevious).Row
-    End With
-End Sub
+  Sub refresh()
+      With ws.UsedRange
+          c_end = .Find("*", , xlFormulas, , xlByColumns, xlPrevious).Column
+          r_end = .Find("*", , xlFormulas, , xlByRows, xlPrevious).Row
+      End With
+  End Sub
 
-Function cell_r(r, title)
-    cell_r = ws.Cells(r, c(title))
-End Function
+  Function cell_r(r, title)
+      cell_r = ws.Cells(r, c(title))
+  End Function
 
-Function cell_w(r, title, value, _
-                Optional title2 = Empty, Optional value2 = Empty, _
-                Optional title3 = Empty, Optional value3 = Empty, _
-                Optional title4 = Empty, Optional value4 = Empty)
+  Function cell_w(r, title, value, _
+                  Optional title2 = Empty, Optional value2 = Empty, _
+                  Optional title3 = Empty, Optional value3 = Empty, _
+                  Optional title4 = Empty, Optional value4 = Empty)
 
-    cell_write_arr = Array(Array(title, value), Array(title2, value2), _
-                            Array(title3, value3), Array(title4, value4))
-    For Each cell_write In cell_write_arr
-        If cell_write(0) <> Empty Then: ws.Cells(r, c(cell_write(0))) = cell_write(1)
-    Next cell_write
-End Function
+      cell_write_arr = Array(Array(title, value), Array(title2, value2), _
+                              Array(title3, value3), Array(title4, value4))
+      For Each cell_write In cell_write_arr
+          If cell_write(0) <> Empty Then: ws.Cells(r, c(cell_write(0))) = cell_write(1)
+      Next cell_write
+  End Function
 
-Function r_find(title, value)
-    r_find = Columns(c(title)).Find(value).Row
-End Function
+  Function r_find(title, value)
+      r_find = Columns(c(title)).Find(value).Row
+  End Function
 
-Function r_arr(title, value)
-    Dim arr As Variant
-    ReDim arr(1)
-    For r = r_beg + 1 To r_end
-        If cell_r(r, title) = value Then
-            arr(i) = r
-            i = i + 1
-            ReDim Preserve arr(i)
-        End If
-    Next r
-    ReDim Preserve arr(i - 1)
-    r_arr = arr
-End Function
+  Function r_arr(title, value)
+      Dim arr As Variant
+      ReDim arr(1)
+      For r = r_start + 1 To r_end
+          If cell_r(r, title) = value Then
+              arr(i) = r
+              i = i + 1
+              ReDim Preserve arr(i)
+          End If
+      Next r
+      ReDim Preserve arr(i - 1)
+      r_arr = arr
+  End Function
 
-Function r_copy(copy_r As Integer, paste_r As Integer, Paste_SHE As SHE)
-    For Each copy_c_title In c
-        For Each paste_c_title In Paste_SHE.c
-            If copy_c_title = paste_c_title Then
-                Call Paste_SHE.cell_w(paste_r, paste_c_title, cell_r(copy_r, copy_c_title))
-            End If
-        Next paste_c_title
-    Next copy_c_title
-End Function
+  Function r_copy(copy_r As Integer, paste_r As Integer, Paste_SHE As SHE)
+      For Each copy_c_title In c
+          For Each paste_c_title In Paste_SHE.c
+              If copy_c_title = paste_c_title Then
+                  Call Paste_SHE.cell_w(paste_r, paste_c_title, cell_r(copy_r, copy_c_title))
+              End If
+          Next paste_c_title
+      Next copy_c_title
+  End Function
 </code></div>

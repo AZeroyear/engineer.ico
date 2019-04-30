@@ -31,3 +31,7 @@ end
 get '/about' do
   erb :'about', :layout => :'engineer/layout'
 end
+
+get '/help' do
+  erb :'engineer/help', :layout => :'engineer/layout'
+end

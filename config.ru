@@ -10,4 +10,8 @@ subdomain :excel do
   require './controller/excel.rb'
 end
 
+get '/' do
+  'please access to <a href="eng.eastazy.work">ENGINEER.ico</a> & <a href="eng.eastazy.work">EXCEL.ico</a>'
+end
+
 run Sinatra::Application
